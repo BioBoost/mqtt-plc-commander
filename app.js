@@ -11,6 +11,10 @@ net.createServer(function (socket) {
   socket.on('end', function () {
     console.log("PLC Client disconnected");
   });
+
+  socket.on('close', function() {
+    console.log('Connection closed');
+  });
   
 }).listen(port);
 
