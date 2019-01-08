@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/BioBoost/mqtt-plc-commander#readme",
   "dependencies": {
+    "jsonschema": "^1.2.4",
     "mqtt": "^2.18.8"
   }
 }

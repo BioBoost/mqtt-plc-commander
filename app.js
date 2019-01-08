@@ -1,14 +1,26 @@
 const net = require('net');
 const mqtt = require('mqtt');
+var validate = require('jsonschema').validate;
+
+const driveSchema = {
+  "type": "object",
+  "properties": {
+    "x": {"type": "integer", "minimum": -128, "maximum": 127},
+    "y": {"type": "integer", "minimum": -128, "maximum": 127}
+  },
+  "required": ["x", "y"]
+};
 
 let port = 1234;
 let plc = null;
+let driveTopic = 'test/plc/drive';
+let driveCommand = 0x10;
 
 let mqttClient = mqtt.connect('mqtt://127.0.0.1');
 
 mqttClient.on('connect', function () {
   console.log("Connected to MQTT Broker")
-  mqttClient.subscribe('test/plc/drive', function (err) {
+  mqttClient.subscribe(driveTopic, function (err) {
     if (!err) {
       console.log("Successfully subscribed to drive topic");
     }
@@ -34,9 +46,16 @@ net.createServer(function (socket) {
 
 mqttClient.on('message', function (topic, message) {
   if (plc) {
-    console.log("Receiving drive command from mqtt: " + message.toString());
-    let data = new Buffer([0x10, -1, -2]);
-    plc.write(data);
+    if (topic == driveTopic) {
+      console.log("Receiving drive command from mqtt: " + message.toString());
+      let data = JSON.parse(message.toString());
+      if (validate(data, driveSchema).valid) {
+        let buffer = new Buffer.from([driveCommand, data.x, data.y]);
+        plc.write(buffer);
+      } else {
+        console.log("Received data was invalid");
+      }
+    }
   } else {
     console.log("No plc connected");
   }
