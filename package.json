@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/BioBoost/mqtt-plc-commander/issues"
   },
-  "homepage": "https://github.com/BioBoost/mqtt-plc-commander#readme"
+  "homepage": "https://github.com/BioBoost/mqtt-plc-commander#readme",
+  "dependencies": {
+    "mqtt": "^2.18.8"
+  }
 }
