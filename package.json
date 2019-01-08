@@ -1,0 +1,25 @@
+{
+  "name": "mqtt-plc-commander",
+  "version": "1.0.0",
+  "description": "Send commands to a PLC using MQTT",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BioBoost/mqtt-plc-commander.git"
+  },
+  "keywords": [
+    "mqtt",
+    "plc",
+    "tcp",
+    "command"
+  ],
+  "author": "Nico De Witte (aka BioBoost)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BioBoost/mqtt-plc-commander/issues"
+  },
+  "homepage": "https://github.com/BioBoost/mqtt-plc-commander#readme"
+}
