@@ -26,6 +26,7 @@ Send the following json message to the `test/plc/drive` topic to drive the tilt 
 PLC receives commands via a TCP client socket in the following format:
 
 | command | data |
+| --- | --- |
 | 1 byte | x bytes |
 
 Current available commands are:
