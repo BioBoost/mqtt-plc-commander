@@ -31,5 +31,5 @@ PLC receives commands via a TCP client socket in the following format:
 
 Current available commands are:
 
-* **0x10**: drive the tilt table for limited number of milliseconds (stops after that)
+* **0x10**: drive the tilt table for limited number of milliseconds (stops after that, actual time is determined by PLC)
   * command is followed by an `x` and `y` value in the range of `[-128, 127]`
